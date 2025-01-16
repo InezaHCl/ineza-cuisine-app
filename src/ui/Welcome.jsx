@@ -17,7 +17,7 @@ export default function Welcome() {
         </div>
 
         <div className="">
-          <Button to="/home" label="start ordering" />
+          <Button to="/app" label="start ordering" />
         </div>
       </div>
     </div>

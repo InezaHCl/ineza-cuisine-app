@@ -8,7 +8,7 @@ export default function AppNavigation() {
       <ul className="flex items-center justify-between lg:justify-evenly">
         <li>
           <Link
-            to="/"
+            to="/app"
             className="flex flex-col items-center text-sm hover:cursor-pointer hover:transition-all hover:duration-300"
           >
             <House
@@ -22,7 +22,7 @@ export default function AppNavigation() {
 
         <li>
           <Link
-            to="/menu"
+            to="/app/menu"
             className="flex flex-col items-center text-sm hover:cursor-pointer hover:transition-all hover:duration-300"
           >
             <List
@@ -36,7 +36,7 @@ export default function AppNavigation() {
 
         <li>
           <Link
-            to="/cart"
+            to="/app/cart"
             className="flex flex-col items-center text-sm hover:cursor-pointer hover:transition-all hover:duration-300"
           >
             <ShoppingCart
@@ -50,7 +50,7 @@ export default function AppNavigation() {
 
         <li>
           <Link
-            to="/history"
+            to="/app/history"
             className="flex flex-col items-center text-sm hover:cursor-pointer hover:transition-all hover:duration-300"
           >
             <NotepadText

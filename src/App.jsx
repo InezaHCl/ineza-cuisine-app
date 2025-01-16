@@ -14,11 +14,13 @@ function App() {
 
       <Route element={<AppLayout />}>
         {/* Childern */}
-        <Route index element={<Home />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="order/new" element={<Order />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="history" element={<History />} />
+        <Route path="app">
+          <Route index element={<Home />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="order/new" element={<Order />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="history" element={<History />} />
+        </Route>
       </Route>
     </Routes>
   );
