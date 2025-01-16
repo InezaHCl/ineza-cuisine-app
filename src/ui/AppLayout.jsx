@@ -5,11 +5,11 @@ import { Outlet } from "react-router";
 
 export default function AppLayout() {
   return (
-    <div>
+    <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       <Header />
 
-      <div className="overflow-x-scroll">
-        <main>
+      <div className="overflow-scroll">
+        <main className="mx-auto h-dvh max-w-3xl">
           <Outlet />
         </main>
       </div>

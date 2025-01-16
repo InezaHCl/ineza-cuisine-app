@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import Welcome from "./ui/Welcome";
 import AppLayout from "./ui/AppLayout";
-import Home from "./utils/Home";
+import Home from "./ui/Home";
 import Menu from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import History from "./features/history/History";
