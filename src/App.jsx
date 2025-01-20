@@ -12,15 +12,14 @@ function App() {
     <Routes>
       <Route index element={<Welcome />} />
 
-      <Route element={<AppLayout />}>
+      <Route path="app" element={<AppLayout />}>
         {/* Childern */}
-        <Route path="app">
-          <Route index element={<Home />} />
-          <Route path="menu" element={<Menu />} />
-          <Route path="order/new" element={<Order />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="history" element={<History />} />
-        </Route>
+        <Route index element={<Home />} />
+        <Route path="menu" element={<Menu />} />
+        <Route path="order/new" element={<Order />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="history" element={<History />} />
+        {/* <Route path="app">s</Route> */}
       </Route>
     </Routes>
   );
