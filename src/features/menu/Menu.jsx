@@ -1,5 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getMenu } from "../services/apiRestaurant";
+import Loader from "../../ui/Loader";
+import MenuItem from "./MenuItem";
 
 export default function Menu() {
-  return <div>Menu</div>;
+  let [menu, setMenu] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchMenu() {
+      setIsLoading(true);
+
+      const data = await getMenu();
+      setMenu(data);
+      // console.log(data);
+
+      setIsLoading(false);
+    }
+
+    fetchMenu();
+  }, []);
+  return (
+    <div>
+      {isLoading && <Loader />}
+
+      <ul className="divide-y divide-stone-200 px-2">
+        {menu.map((pizza) => (
+          <MenuItem pizza={pizza} key={pizza.id} />
+        ))}
+      </ul>
+    </div>
+  );
 }
