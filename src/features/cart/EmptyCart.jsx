@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../ui/Button";
+import LinkButton from "../../ui/LinkButton";
 
 export default function EmptyCart() {
   return (
@@ -9,9 +9,7 @@ export default function EmptyCart() {
         Looks like you haven't added anything to your cart yet.
       </p>
 
-      <Button to="/app/menu" type="primary">
-        Browser Your Pizza
-      </Button>
+      <LinkButton to="/app/menu">Browser Your Pizza</LinkButton>
     </div>
   );
 }
