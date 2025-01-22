@@ -12,9 +12,8 @@ export default function CreateUser() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!username) return;
-
     // Logic for form submission
+    if (!username) return;
 
     dispatch(updateName(username));
     navigate("/app/menu");
@@ -36,9 +35,7 @@ export default function CreateUser() {
 
       {username !== "" && (
         <div>
-          <Button type="primary" to="/app/menu">
-            Start ordering
-          </Button>
+          <Button type="primary">Start ordering</Button>
         </div>
       )}
     </form>
