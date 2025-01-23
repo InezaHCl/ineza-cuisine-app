@@ -13,7 +13,7 @@ export default function Welcome() {
         <p className="text-center text-xl capitalize">Order Delicious Food </p>
 
         <div>
-          <img src="../../assets/Take-away.png" width="250" />
+          <img src="./../../assets/takeAway.png" width="250" />
         </div>
 
         <div className="">
