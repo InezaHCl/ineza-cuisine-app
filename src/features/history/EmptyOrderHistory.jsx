@@ -1,8 +1,9 @@
 import React from "react";
+import LinkButton from "../../ui/LinkButton";
 
 export default function EmptyOrderHistory() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center px-4">
       <h2 className="mb-2 text-2xl font-semibold">
         Your Order History is Empty
       </h2>
@@ -10,9 +11,7 @@ export default function EmptyOrderHistory() {
         Looks like you haven't placed any orders yet.
       </p>
 
-      <Button to="/app/menu" type="primary">
-        Browser Your Pizza
-      </Button>
+      <LinkButton to="/app/menu">Browser Your Pizza</LinkButton>
     </div>
   );
 }
