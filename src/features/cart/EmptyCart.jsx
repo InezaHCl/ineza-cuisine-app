@@ -9,7 +9,7 @@ export default function EmptyCart() {
         Looks like you haven't added anything to your cart yet.
       </p>
 
-      <LinkButton to="/app/menu">Browser Your Pizza</LinkButton>
+      <LinkButton to="/menu">Browser Your Pizza</LinkButton>
     </div>
   );
 }
