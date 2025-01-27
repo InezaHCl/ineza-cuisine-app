@@ -16,7 +16,7 @@ export default function CreateUser() {
     if (!username) return;
 
     dispatch(updateName(username));
-    navigate("/app/menu");
+    navigate("/menu");
   }
 
   return (

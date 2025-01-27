@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router";
 
 export default function Menu() {
   const menu = useLoaderData();
-  console.log(menu);
+  // console.log(menu);
   // let [menu, setMenu] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
 
