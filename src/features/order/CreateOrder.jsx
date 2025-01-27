@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useActionData, useNavigation, useSubmit } from "react-router";
+import { Form, redirect, useActionData, useNavigation } from "react-router";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import Button from "../../ui/Button";
@@ -16,7 +16,7 @@ const isValidPhone = (str) =>
   );
 
 export default function CreateOrder() {
-  const [withPriority, setWithPriority] = useState();
+  const [withPriority, setWithPriority] = useState(false);
   const {
     username,
     status: addressStatus,
@@ -37,24 +37,21 @@ export default function CreateOrder() {
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
 
-  const submit = useSubmit();
-  const [formData, setFormData] = useState({});
+  // async function handleSubmit(event) {
+  //   event.preventDefault();
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  //   // Save data in the store
+  //   const newOrder = await createOrder(formData);
+  //   // Clear up cart after submitting order
+  //   store.dispatch(clearCart());
 
-    // Save data in the store
-    const newOrder = await createOrder(formData);
-    // Clear up cart after submitting order
-    store.dispatch(clearCart());
+  //   // Manually trigger form submission using useSubmit
+  //   submit(event.currentTarget, { method: "post", action: "/app/order/new" });
+  // }
 
-    // Manually trigger form submission using useSubmit
-    submit(event.currentTarget, { method: "post", action: "/app/order/new" });
-  }
-
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
+  // const handleChange = (event) => {
+  //   setFormData({ ...formData, [event.target.name]: event.target.value });
+  // };
 
   if (!cart.length) return <EmptyCart />;
 
@@ -65,13 +62,12 @@ export default function CreateOrder() {
       </h2>
 
       {/* <Form method="POST" action="/order/new"> */}
-      <Form onSubmit={handleSubmit}>
+      <Form method="POST">
         <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
           <input
             type="text"
             name="customer"
-            value={formData.customer}
             required
             defaultValue={username}
             className="input grow"
@@ -81,13 +77,7 @@ export default function CreateOrder() {
         <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              required
-              className="input w-full"
-            />
+            <input type="tel" name="phone" required className="input w-full" />
             {formErrors?.phone && (
               <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
                 {formErrors.phone}
@@ -102,7 +92,6 @@ export default function CreateOrder() {
             <input
               type="text"
               name="address"
-              value={formData.address}
               disabled={isLoadingAddress}
               defaultValue={address}
               required
@@ -116,7 +105,7 @@ export default function CreateOrder() {
           </div>
 
           {!position.latitude && !position.longitude && (
-            <span className="absolute right-[3px] top-[3px] z-50 md:right-[5px] md:top-[5px]">
+            <span className="absolute right-[3px] top-[35px] z-50 md:right-[5px] md:top-[5px]">
               <Button
                 disabled={isLoadingAddress}
                 type="small"
@@ -168,4 +157,32 @@ export default function CreateOrder() {
       </Form>
     </div>
   );
+}
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "true",
+  };
+
+  console.log(data);
+
+  const erros = {};
+  if (!isValidPhone(order.phone))
+    erros.phone =
+      "Please give us your correct phone number. We might need it to contact you.";
+
+  if (Object.keys(erros).length > 0) return erros;
+
+  // if everything is okay, create new order and redirect
+  const newOrder = await createOrder(order);
+
+  // Clean up cart after submitting order
+  store.dispatch(clearCart());
+
+  return redirect(`/order/${newOrder.id}`);
 }

@@ -28,7 +28,7 @@ export default function Menu() {
     <div>
       {/* {isLoading && <Loader />} */}
 
-      <ul className="divide-y divide-stone-200 px-2">
+      <ul className="divide-y divide-stone-200">
         {menu.map((pizza) => (
           <MenuItem pizza={pizza} key={pizza.id} />
         ))}
