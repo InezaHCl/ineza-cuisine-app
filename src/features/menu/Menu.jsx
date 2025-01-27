@@ -2,33 +2,42 @@ import React, { useEffect, useState } from "react";
 import { getMenu } from "../services/apiRestaurant";
 import Loader from "../../ui/Loader";
 import MenuItem from "./MenuItem";
+import { useLoaderData } from "react-router";
 
 export default function Menu() {
-  let [menu, setMenu] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const menu = useLoaderData();
+  // console.log(menu);
+  // let [menu, setMenu] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchMenu() {
-      setIsLoading(true);
+  // useEffect(() => {
+  //   async function fetchMenu() {
+  //     setIsLoading(true);
 
-      const data = await getMenu();
-      setMenu(data);
-      // console.log(data);
+  //     const data = await getMenu();
+  //     setMenu(data);
+  //     // console.log(data);
 
-      setIsLoading(false);
-    }
+  //     setIsLoading(false);
+  //   }
 
-    fetchMenu();
-  }, []);
+  //   fetchMenu();
+  // }, []);
+
   return (
     <div>
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
 
-      <ul className="divide-y divide-stone-200 px-2">
+      <ul className="divide-y divide-stone-200">
         {menu.map((pizza) => (
           <MenuItem pizza={pizza} key={pizza.id} />
         ))}
       </ul>
     </div>
   );
+}
+
+export async function loader() {
+  const menu = await getMenu();
+  return menu;
 }

@@ -19,7 +19,7 @@ export default function Home() {
       {username === "" ? (
         <CreateUser />
       ) : (
-        <Button to="/app/menu" type="primary">
+        <Button to="/menu" type="primary">
           Continue ordering, {username}
         </Button>
       )}
