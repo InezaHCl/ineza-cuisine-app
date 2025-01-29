@@ -169,7 +169,7 @@ export async function action({ request }) {
     priority: data.priority === "true",
   };
 
-  console.log(data);
+  // console.log(data);
 
   const erros = {};
   if (!isValidPhone(order.phone))
