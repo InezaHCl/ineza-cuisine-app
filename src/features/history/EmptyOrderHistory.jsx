@@ -11,7 +11,7 @@ export default function EmptyOrderHistory() {
         Looks like you haven't placed any orders yet.
       </p>
 
-      <LinkButton to="/app/menu">Browser Your Pizza</LinkButton>
+      <LinkButton to="/menu">Browser Your Pizza</LinkButton>
     </div>
   );
 }
