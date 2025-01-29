@@ -11,7 +11,7 @@ export default function Cart() {
   const cart = useSelector(getCart);
 
   const dispatch = useDispatch();
-  console.log(cart);
+  // console.log(cart);
 
   if (cart.length <= 0) return <EmptyCart />;
 
