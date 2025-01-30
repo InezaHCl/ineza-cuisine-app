@@ -77,7 +77,7 @@ export default function CreateOrder() {
               type="text"
               name="address"
               disabled={isLoadingAddress}
-              placeholder={`${isLoadingAddress && "Fetching address..."}`}
+              placeholder={`${isLoadingAddress ? "Fetching address..." : ""}`}
               defaultValue={address}
               required
               className="input w-full"
