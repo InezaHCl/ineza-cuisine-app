@@ -10,7 +10,7 @@ export default function Welcome() {
           <span>Cousine Co.</span>
         </h1>
 
-        <p className="text-center text-xl capitalize">Order Delicious Food </p>
+        <p className="text-center text-xl capitalize">Order Delicious Pizza </p>
 
         <div>
           <img src="./../../assets/takeAway.png" width="250" />
