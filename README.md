@@ -1,6 +1,6 @@
-# Ineza Cuisine Co.
+# InezaPizza
 
-Ineza Cuisine Co. is an online restaurant platform where users can order food from a variety of cuisines.
+Ineza Pizza is an online restaurant platform where users can order food from a variety of cuisines.
 The project is built using React and utilizes Tailwind CSS for styling. It features a user-friendly interface, allowing customers to easily navigate and place orders. The platform aims to provide a seamless food ordering experience, connecting customers with their favorite dishes from the comfort of their own homes.
 
 This project was bootstrapped for you with [Vite](https://vitejs.dev/).
