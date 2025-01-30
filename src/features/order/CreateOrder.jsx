@@ -37,22 +37,6 @@ export default function CreateOrder() {
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
 
-  // async function handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   // Save data in the store
-  //   const newOrder = await createOrder(formData);
-  //   // Clear up cart after submitting order
-  //   store.dispatch(clearCart());
-
-  //   // Manually trigger form submission using useSubmit
-  //   submit(event.currentTarget, { method: "post", action: "/app/order/new" });
-  // }
-
-  // const handleChange = (event) => {
-  //   setFormData({ ...formData, [event.target.name]: event.target.value });
-  // };
-
   if (!cart.length) return <EmptyCart />;
 
   return (
@@ -131,7 +115,7 @@ export default function CreateOrder() {
             onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-semibold">
-            Want to yo give your order priority?
+            Want to yo give your order priority? It's(2% extra)
           </label>
         </div>
 
@@ -180,6 +164,33 @@ export async function action({ request }) {
 
   // if everything is okay, create new order and redirect
   const newOrder = await createOrder(order);
+  // console.log("New Order:", newOrder);
+
+  const historyOrder = {
+    id: newOrder.id,
+    createdAt: newOrder.createdAt,
+    items: newOrder.cart.map((item) => ({
+      name: item.name,
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+      totalPrice: item.totalPrice,
+    })),
+    total: newOrder.orderPrice,
+  };
+  // console.log("HistoryData:", historyOrder);
+
+  // Get existing orders from localStorage
+  const existingOrders = JSON.parse(
+    localStorage.getItem("orderHistory") || "[]",
+  );
+
+  // Check if order already exists
+  const exists = existingOrders.some((o) => o.id === historyOrder.id);
+
+  if (!exists) {
+    const updatedOrders = [historyOrder, ...existingOrders];
+    localStorage.setItem("orderHistory", JSON.stringify(updatedOrders));
+  }
 
   // Clean up cart after submitting order
   store.dispatch(clearCart());
