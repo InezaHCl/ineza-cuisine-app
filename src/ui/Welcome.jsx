@@ -7,10 +7,14 @@ export default function Welcome() {
       <div className="flex flex-col items-center gap-4">
         <h1 className="text-4xl font-semibold tracking-wide">
           Ineza
-          <span>Cousine Co.</span>
+          <span>Pizza</span>
         </h1>
 
-        <p className="text-center text-xl capitalize">Order Delicious Pizza </p>
+        <h2 className="text-2xl">Fast Delivery Pizza App 📱</h2>
+
+        <p className="text-center text-xl font-semibold capitalize">
+          Order Delicious Pizza{" "}
+        </p>
 
         <div>
           <img src="./../../assets/takeAway.png" width="250" />
